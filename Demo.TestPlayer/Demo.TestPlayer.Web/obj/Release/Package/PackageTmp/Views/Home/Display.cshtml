@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<div>
+    <video id="videojs-mobile-ui-player" class="video-js vjs-default-skin vjs-big-play-centered" controls>
+        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.720p.webm" type="video/webm" label="720P">
+        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.webm" type="video/webm" label="480P">
+        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm" type="video/webm" label="360P">
+        <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4" label="240P" selected="true">
+    </video>
+</div>
+
+<script src="https://unpkg.com/video.js@7.5.4/dist/video.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui@0.5.0/dist/videojs-mobile-ui.js"></script>
+<script>
+    (function(window, videojs) {
+      var testPlayer = window.testPlayer = videojs('videojs-mobile-ui-player');
+      testPlayer.endscreen = function() {};
+      testPlayer.mobileUi({
+        fullscreen: {
+            iOS: true,
+            enterOnRotate: true,
+            exitOnRotate: true,
+            lockOnRotate: true
+        },
+        touchControls: {
+            seekSeconds: 10,
+            tapTimeout: 300,
+            disableOnEnd: false
+        }
+      });
+    }(window, window.videojs));
+</script>
+

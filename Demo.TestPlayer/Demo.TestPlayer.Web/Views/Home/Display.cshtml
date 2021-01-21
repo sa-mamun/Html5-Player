@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<div>
+    <video id='video_1' class="video-js vjs-default-skin vjs-big-play-centered" playsinline>
+        @*<source id="video_2">*@
+        @*<source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.webm" type="video/webm" label="480P">
+            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm" type="video/webm" label="360P">
+            <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4" label="240P" selected="true">*@
+    </video>
+</div>
+<div>
+    <button class="btn-default" onclick="GetLink()">240p</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://unpkg.com/video.js@7.5.4/dist/video.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.min.js"></script>
+<script src="https://cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui@0.5.0/dist/videojs-mobile-ui.js"></script>
+<script src="~/Scripts/adaptive-bitrate.js"></script>
+
+
+<script>
+    var plyr = videojs("video_1", {
+        autoplay: true,
+        controls: true,
+        loop: true,
+        fluid: true,
+        responsive: true,
+        playbackRates: [0.25, 0.5, 1, 1.5, 2, 2.5, 3],
+        //sources: [{
+        //    type: "video/webm",
+        //    src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm"
+        //}],
+        plugins: {
+            seekButtons: {
+                forward: 30,
+                back: 10
+            }
+        }
+    },
+        function () {
+            this.hotkeys({
+                volumeStep: 0.1,
+                seekStep: 5,
+                enableModifiersForNumbers: false
+            });
+            //var player = this;
+            //player.controlBar.addChild('QualitySelector');
+        });
+
+    var urlValue = "";
+    function getUrl() {
+        $.ajax({
+            url: '@Url.Action("GetSource", "Home")',
+            type: "GET",
+            dataType: "json",
+            success: function (result) {
+                console.log(result);
+                urlValue = result.data;
+                plyr.src({ type: 'video/webm', src: urlValue });
+                plyr.ready(function () {
+                    plyr.play();
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            },
+            complete: function () {
+
+            }
+        });
+    }
+
+    getUrl();
+    console.log(plyr);
+</script>
+
+<script>
+    (function (window, videojs) {
+        var testPlayer = window.testPlayer = videojs('video_1');
+        testPlayer.endscreen = function () { };
+        testPlayer.mobileUi({
+            fullscreen: {
+                iOS: true,
+                enterOnRotate: true,
+                exitOnRotate: true,
+                lockOnRotate: true
+            },
+            touchControls: {
+                seekSeconds: 10,
+                tapTimeout: 300,
+                disableOnEnd: false
+            }
+        });
+    }(window, window.videojs));
+</script>
+

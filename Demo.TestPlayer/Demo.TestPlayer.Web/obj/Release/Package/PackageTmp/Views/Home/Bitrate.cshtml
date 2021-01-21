@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Bitrate";
+}
+
+<h2>Bitrate</h2>
+
+<div class="video_div">
+    <video id='video_1' class="video-js vjs-default-skin vjs-big-play-centered" playsinline></video>
+</div>
+
+<script src="https://unpkg.com/video.js@7.5.4/dist/video.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.min.js"></script>
+<script src="https://cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui@0.5.0/dist/videojs-mobile-ui.js"></script>
+<script src="~/Scripts/adaptive-bitrate.js"></script>
+
+@*<script>
+        //videojs('video_1').videoJsResolutionSwitcher()
+        //videojs('video', {
+        //    controls: true,
+        //    plugins: {
+        //        videoJsResolutionSwitcher: {
+        //            default: 'low',
+        //            dynamicLabel: true
+        //        }
+        //    }
+        //}, function () {
+        //        var player = this;
+        //    // Add dynamically sources via updateSrc method
+        //    player.updateSrc([
+        //        {
+        //            src: 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
+        //            type: 'video/webm',
+        //            label: '360'
+        //        },
+        //        {
+        //            src: 'http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4',
+        //            type: 'video/mp4',
+        //            label: '720'
+        //        }
+        //    ])
+
+        //    player.on('resolutionchange', function () {
+        //        console.info('Source changed to %s', player.src())
+        //    })
+
+        //})
+    </script>*@
+
+<script>
+    videojs("video_1", {
+        autoplay: true,
+        controls: true,
+        loop: true,
+        fluid: true,
+        responsive: true,
+        playbackRates: [0.25, 0.5, 1, 1.5, 2, 2.5, 3],
+        plugins: {
+            seekButtons: {
+                forward: 30,
+                back: 10
+            },
+            videoJsAdaptiveSource: {
+                useIconButton: false,
+                disableAdaptive: false,
+                threshold: 4
+            }
+        }
+    },
+        function () {
+            this.setSources([
+                {
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.240p.webm',
+                    type: 'video/webm',
+                    label: '240p',
+                    bitrate: 1000
+                },
+                {
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm',
+                    type: 'video/webm',
+                    label: '360p',
+                    bitrate: 1500
+                },
+                {
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.webm',
+                    type: 'video/webm',
+                    label: '480p',
+                    bitrate: 2000
+                },
+                {
+                    src: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.720p.webm',
+                    type: 'video/webm',
+                    label: '720p',
+                    bitrate: 3000
+                },
+                {
+                    src: 'https://cdn.videvo.net/videvo_files/video/free/2014-12/small_watermarked/Raindrops_Videvo_preview.webm',
+                    type: 'video/webm',
+                    label: '1080p',
+                    bitrate: 3500
+                },
+                {
+                    src: 'https://wildernessvideo.s3.amazonaws.com/movies/Demo1%20720.mp4',
+                    type: 'video/mp4',
+                    label: '4k',
+                    bitrate: 4000
+                }
+            ], "/Images/test.jpg");
+            this.hotkeys({
+                volumeStep: 0.1,
+                seekStep: 5,
+                enableModifiersForNumbers: false
+            });
+            //var player = this;
+            //player.controlBar.addChild('QualitySelector');
+        });
+</script>
+
+<script>
+    (function (window, videojs) {
+        var testPlayer = window.testPlayer = videojs('video_1');
+        testPlayer.endscreen = function () { };
+        testPlayer.mobileUi({
+            fullscreen: {
+                iOS: true,
+                enterOnRotate: true,
+                exitOnRotate: true,
+                lockOnRotate: true
+            },
+            touchControls: {
+                seekSeconds: 10,
+                tapTimeout: 300,
+                disableOnEnd: false
+            }
+        });
+    }(window, window.videojs));
+</script>
+
