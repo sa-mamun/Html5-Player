@@ -28,6 +28,11 @@ namespace Demo.TestPlayer.Web.Controllers
         {
             return View();
         }
+        public ActionResult HlsTest()
+        {
+            return View();
+        }
+
 
         [HttpGet]
         public ActionResult GetSource()

@@ -146,6 +146,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\dash.all.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -176,6 +177,7 @@
     <Content Include="Views\Home\Display.cshtml" />
     <Content Include="Views\Home\Resolution.cshtml" />
     <Content Include="Views\Home\Bitrate.cshtml" />
+    <Content Include="Views\Home\HlsTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

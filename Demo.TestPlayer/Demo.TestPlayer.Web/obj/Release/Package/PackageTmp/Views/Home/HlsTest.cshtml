@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "HlsTest";
+}
+
+<h2>HlsTest</h2>
+
+<div>
+    <video id='video_1' class="video-js vjs-default-skin vjs-big-play-centered" playsinline>
+        <source src="http://192.168.2.181:8084/Videos/class_33/index.m3u8" type="application/x-mpegURL">
+        @*Fallback video source*@
+        @*<source src="https://demo.unified-streaming.com/video/ateam/ateam.ism/ateam.mpd" type="application/dash+xml">*@
+    </video>
+</div>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+<script src="https://unpkg.com/video.js@7.5.4/dist/video.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.0.9/videojs-contrib-quality-levels.js" integrity="sha512-LZHGk8dp6iG/NbFW8/kDFBcIvhVAXrI0V0W6icN8RldZWaGPwrony24mZuahj5XYbUbW7Q6Cq3CTRo2BBHOCmQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.4/dist/videojs-hls-quality-selector.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/dashjs/3.2.0/dash.all.min.js" integrity="sha512-wFaKU7BcXbvVVGi0vDUKv4GXc9Hrp4RjGZorG8KlpRurhpvgCXiLhcafCj3y/gKY5CKAuyu00b+BvJ+vyRD0Pg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-dash/4.0.0/videojs-dash.min.js" integrity="sha512-aw/opNs7UL6pySX/cObxEb4SE6cv5Sui8FiLdy/8LHq4/+t1U0xTNUD72UoPL3poRUJmXnaS7FtMHX3qKoHkew==" crossorigin="anonymous"></script>*@
+<script src="https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.min.js"></script>
+<script src="https://cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui@0.5.0/dist/videojs-mobile-ui.js"></script>
+
+
+
+<script>
+    videojs.options.hls.overrideNative = true;
+    videojs.options.html5.nativeAudioTracks = false;
+    videojs.options.html5.nativeTextTracks = false;
+    var plyr = videojs("video_1", {
+        autoplay: true,
+        controls: true,
+        loop: true,
+        fluid: true,
+        responsive: true,
+        playbackRates: [0.25, 0.5, 1, 1.5, 2, 2.5, 3],
+        //html5: {
+        //    vhs: {
+        //        overrideNative: true
+        //    },
+        //    nativeAudioTracks: false,
+        //    nativeVideoTracks: false
+        //},
+        //html5: {
+        //    hls: {
+        //        overrideNative: !videojs.browser.IS_SAFARI
+        //    }
+        //},
+        plugins: {
+            seekButtons: {
+                forward: 30,
+                back: 10
+            }
+        }
+    },
+        function () {
+            this.hotkeys({
+                volumeStep: 0.1,
+                seekStep: 5,
+                enableModifiersForNumbers: false
+            });
+
+            var player = this;
+            player.hlsQualitySelector();
+        });
+</script>
+
+<script>
+    (function (window, videojs) {
+        var testPlayer = window.testPlayer = videojs('video_1');
+        testPlayer.endscreen = function () { };
+        testPlayer.mobileUi({
+            fullscreen: {
+                iOS: true,
+                enterOnRotate: true,
+                exitOnRotate: true,
+                lockOnRotate: true
+            },
+            touchControls: {
+                seekSeconds: 10,
+                tapTimeout: 300,
+                disableOnEnd: false
+            }
+        });
+    }(window, window.videojs));
+</script>

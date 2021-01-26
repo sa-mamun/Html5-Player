@@ -7,27 +7,25 @@
 
 <div>
     <video id='video_1' class="video-js vjs-default-skin vjs-big-play-centered" playsinline>
-        @*<source id="video_2">*@
-        @*<source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.480p.webm" type="video/webm" label="480P">
-            <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm" type="video/webm" label="360P">
-            <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4" label="240P" selected="true">*@
+        <source src="https://192.168.2.181:8082/Videos/sample/index.m3u8" type="application/x-mpegURL">
     </video>
 </div>
-<div>
-    <button class="btn-default" onclick="GetLink()">240p</button>
-</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
 <script src="https://unpkg.com/video.js@7.5.4/dist/video.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.min.js"></script>
 <script src="https://cdn.sc.gl/videojs-hotkeys/0.2/videojs.hotkeys.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui@0.5.0/dist/videojs-mobile-ui.js"></script>
-<script src="~/Scripts/adaptive-bitrate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-quality-levels/2.0.9/videojs-contrib-quality-levels.js" integrity="sha512-LZHGk8dp6iG/NbFW8/kDFBcIvhVAXrI0V0W6icN8RldZWaGPwrony24mZuahj5XYbUbW7Q6Cq3CTRo2BBHOCmQ==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/videojs-hls-quality-selector@1.1.4/dist/videojs-hls-quality-selector.js"></script>
+@*<script src=@Html.Raw("https://cdn.jsdelivr.net/npm/@videojs/http-streaming@2.5.0/dist/videojs-http-streaming.min.js")></script>*@
+@*<script src="~/Scripts/dash.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-dash/4.0.0/videojs-dash.min.js" integrity="sha512-aw/opNs7UL6pySX/cObxEb4SE6cv5Sui8FiLdy/8LHq4/+t1U0xTNUD72UoPL3poRUJmXnaS7FtMHX3qKoHkew==" crossorigin="anonymous"></script>*@
 
 
 <script>
     var plyr = videojs("video_1", {
-        autoplay: true,
+        autoplay: false,
         controls: true,
         loop: true,
         fluid: true,
@@ -37,14 +35,22 @@
         //    type: "video/webm",
         //    src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.webm"
         //}],
+        html5: {
+            vhs: {
+                overrideNative: true
+            },
+            nativeAudioTracks: false,
+            nativeVideoTracks: false
+        },
         plugins: {
             seekButtons: {
-                forward: 30,
+                forward: 10,
                 back: 10
             }
         }
     },
         function () {
+            this.playbackRate(1);
             this.hotkeys({
                 volumeStep: 0.1,
                 seekStep: 5,
@@ -54,7 +60,7 @@
             //player.controlBar.addChild('QualitySelector');
         });
 
-    var urlValue = "";
+    @*var urlValue = "";
     function getUrl() {
         $.ajax({
             url: '@Url.Action("GetSource", "Home")',
@@ -78,7 +84,7 @@
     }
 
     getUrl();
-    console.log(plyr);
+    console.log(plyr);*@
 </script>
 
 <script>
