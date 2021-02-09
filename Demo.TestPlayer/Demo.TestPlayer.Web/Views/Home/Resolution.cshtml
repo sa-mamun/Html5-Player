@@ -29,7 +29,7 @@
     for (var i = 0; i < @Model.Count(); i++) {
         var id = "video_" + i;
         videojs(id, {
-            autoplay: i === 0 ? true : false,
+            autoplay: false,
             controls: true,
             loop: true,
             fluid: true,
@@ -68,5 +68,15 @@
             });
         }(window, window.videojs));
     }
+
+    var medias = Array.prototype.slice.apply(document.querySelectorAll('audio,video'));
+    medias.forEach(function (media) {
+        media.addEventListener('play', function (event) {
+            medias.forEach(function (media) {
+                if (event.target != media) media.pause();
+            });
+        });
+    });
+
 </script>
 

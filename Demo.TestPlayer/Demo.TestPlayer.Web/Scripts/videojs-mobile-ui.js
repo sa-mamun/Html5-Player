@@ -14,7 +14,7 @@ import videojs from 'video.js';
 window.videojs = videojs;
 require('https://unpkg.com/video.js@7.5.4/dist/video.js');
 
-/*var videojs = _interopDefault(require("video.js"))*/,
+/*var videojs = _interopDefault(require("video.js"))*/
     window = _interopDefault(require("global/window")),
     version = "0.5.0",
     classCallCheck = function (e, t) {

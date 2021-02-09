@@ -156,3 +156,10 @@ D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\obj\Debug\Dem
 D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\obj\Debug\Demo.TestPlayer.Web.dll
 D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\obj\Debug\Demo.TestPlayer.Web.pdb
 D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\obj\Debug\Demo.TestPlayer.Web.csprojAssemblyReference.cache
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\System.Web.Cors.dll
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\System.Net.Http.Formatting.dll
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\System.Web.Http.dll
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\System.Net.Http.Formatting.xml
+D:\Github_Project\Html5-Player\Demo.TestPlayer\Demo.TestPlayer.Web\bin\System.Web.Http.xml
